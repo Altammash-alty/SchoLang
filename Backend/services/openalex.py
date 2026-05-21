@@ -2,17 +2,17 @@ import httpx
 
 async def search_openalex(query: str):
     
-    url = f"https://api.openalex.org/works?search={query}&per-page=10"
+    url = f"https://api.openalex.org/works?search={query}"
+    headers = {"x-api-key": OpenAlex_API_KEY}
     
     papers = []
     
     async with httpx.AsyncClient() as client:
-        response = await client.get(url)
+        response = await client.get(url,headers=headers)
         data = response.json()
     
     for result in data["results"]:
         
-        # get authors
         authors = []
         for authorship in result.get("authorships", []):
             name = authorship.get("author", {}).get("display_name", "")
