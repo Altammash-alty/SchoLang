@@ -1,14 +1,17 @@
 import httpx
 
 async def search_openalex(query: str):
-    
-    url = f"https://api.openalex.org/works?search={query}"
-    headers = {"x-api-key": OpenAlex_API_KEY}
+
+    url = f"https://api.openalex.org/works?"
+    params = {
+        "search":query,
+        "api_key": OpenAlex_API_KEY
+        }
     
     papers = []
     
     async with httpx.AsyncClient() as client:
-        response = await client.get(url,headers=headers)
+        response = await client.get(url,params=params)
         data = response.json()
     
     for result in data["results"]:
