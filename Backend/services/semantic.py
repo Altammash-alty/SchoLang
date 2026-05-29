@@ -11,28 +11,27 @@ async def search_semantic_scholar(query: str, limit: int = 10) -> list:
         "limit": limit,
         "fields": "title,authors,year,abstract,externalIds,url"
     }
-
     papers = []
 
     try:
         async with httpx.AsyncClient() as client:
             response = await client.get(BASE_URL, headers=headers, params=params, timeout=10)
-            data = response.json()
+            data     = response.json()
 
         for result in data.get("data", []):
             authors = [a.get("name", "") for a in result.get("authors", [])]
-            doi = result.get("externalIds", {}).get("DOI", "")
+            doi     = result.get("externalIds", {}).get("DOI", "")
 
-            papers.append({
-                "title":           result.get("title", ""),
-                "authors":         authors,
-                "year":            str(result.get("year", "")),
-                "abstract":        result.get("abstract", ""),
-                "doi":             doi,
-                "url":             result.get("url", ""),
-                "source":          "Semantic Scholar",
-                "relevance_score": 0
-            })
+            papers.append(Paper(
+                title           = result.get("title",    "") or "",
+                authors         = authors,
+                year            = str(result.get("year", "")),
+                abstract        = result.get("abstract", "") or "",
+                doi             = doi,
+                url             = result.get("url",      "") or "",
+                source          = "Semantic Scholar",
+                relevance_score = 0.0
+            ))
 
     except Exception as e:
         print(f"Semantic Scholar error: {e}")

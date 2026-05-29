@@ -1,84 +1,72 @@
 import httpx
 import os
+from models.paper import Paper
 
-PUBMED_API_KEY = os.getenv("NCBI_API_KEY")
+PUBMED_API_KEY = os.getenv("PUBMED_API_KEY")
+ESEARCH_URL    = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+ESUMMARY_URL   = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
 
 # PubMed works in two steps:
-# Step 1 — esearch: give it a query, get back a list of paper IDs
-# Step 2 — efetch: give it those IDs, get back the actual paper details
+# Step 1 — esearch: query → list of paper IDs
+# Step 2 — esummary: paper IDs → paper details
 
-ESEARCH_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
-EFETCH_URL  = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
-ESUMMARY_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
-
-async def search_pubmed(query: str, limit: int = 10) -> list:
+async def search_pubmed(query: str, limit: int = 10) -> list[Paper]:
     papers = []
 
     try:
         async with httpx.AsyncClient() as client:
 
-            # ── Step 1: Search — get paper IDs ──────────────────────────────
-            search_params = {
+            # Step 1 — get paper IDs
+            search_response = await client.get(ESEARCH_URL, params={
                 "db":      "pubmed",
                 "term":    query,
                 "retmax":  limit,
                 "retmode": "json",
                 "api_key": PUBMED_API_KEY
-            }
-            search_response = await client.get(ESEARCH_URL, params=search_params, timeout=10)
-            search_data = search_response.json()
+            }, timeout=10)
 
-            # Extract the list of IDs
-            ids = search_data.get("esearchresult", {}).get("idlist", [])
+            ids = search_response.json().get("esearchresult", {}).get("idlist", [])
 
             if not ids:
                 return []
 
-            # ── Step 2: Fetch summaries using those IDs ──────────────────────
-            summary_params = {
+            # Step 2 — get paper details using those IDs
+            summary_response = await client.get(ESUMMARY_URL, params={
                 "db":      "pubmed",
-                "id":      ",".join(ids),   # pass all IDs as comma-separated string
+                "id":      ",".join(ids),
                 "retmode": "json",
                 "api_key": PUBMED_API_KEY
-            }
-            summary_response = await client.get(ESUMMARY_URL, params=summary_params, timeout=10)
-            summary_data = summary_response.json()
+            }, timeout=10)
 
-        # Parse each paper from the summary result
-        results = summary_data.get("result", {})
+            results = summary_response.json().get("result", {})
 
         for paper_id in ids:
             paper = results.get(paper_id, {})
             if not paper:
                 continue
 
-            # Authors — PubMed gives a list of author objects with "name" field
+            # Authors
             authors = [a.get("name", "") for a in paper.get("authors", [])]
 
-            # Year — PubMed gives pubdate like "2023 Apr 12" — take first 4 chars
+            # Year — first 4 chars of pubdate (e.g. "2023 Apr 12")
             year = paper.get("pubdate", "")[:4]
 
-            # DOI — inside articleids list, look for idtype == "doi"
+            # DOI — inside articleids list where idtype == "doi"
             doi = ""
             for article_id in paper.get("articleids", []):
                 if article_id.get("idtype") == "doi":
                     doi = article_id.get("value", "")
 
-            # PubMed URL
-            url = f"https://pubmed.ncbi.nlm.nih.gov/{paper_id}/"
-
-            # Note: esummary does not return full abstract
-            # Abstract requires efetch — added as empty for now, can enhance later
-            papers.append({
-                "title":           paper.get("title", ""),
-                "authors":         authors,
-                "year":            year,
-                "abstract":        "",   # esummary doesn't return abstract
-                "doi":             doi,
-                "url":             url,
-                "source":          "PubMed",
-                "relevance_score": 0
-            })
+            papers.append(Paper(
+                title           = paper.get("title",  "") or "",
+                authors         = authors,
+                year            = year,
+                abstract        = "",   # esummary doesn't return abstract
+                doi             = doi,
+                url             = f"https://pubmed.ncbi.nlm.nih.gov/{paper_id}/",
+                source          = "PubMed",
+                relevance_score = 0.0
+            ))
 
     except Exception as e:
         print(f"PubMed error: {e}")
