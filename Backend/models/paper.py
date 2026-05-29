@@ -1,16 +1,16 @@
-# ── Request model ─────────────────────────────────────────────────────────────
+from pydantic import BaseModel
+
 class SearchRequest(BaseModel):
     query:    str
     language: str = "en"
     limit:    int = 10
 
-# ----Paper Cache --- 
-class PaperCache(BaseModel):
-    dois:     str
-    title:    str
-    abstract: str
-    authors:  List[str]
-    venue:    str
-    year:     int
-    url:      str
-    sources:  List[str] 
+class Paper(BaseModel):
+    title:           str
+    authors:         list
+    year:            str
+    abstract:        str
+    doi:             str
+    url:             str
+    source:          str
+    relevance_score: float = 0.0

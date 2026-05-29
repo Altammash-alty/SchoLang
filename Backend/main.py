@@ -5,11 +5,11 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 
 from models.paper import SearchRequest, Paper
-from services.semantic_scholar import search_semantic_scholar
+from services.semantic import search_semantic_scholar
 from services.openalex         import search_openalex
 from services.arxiv            import search_arxiv
 from services.pubmed           import search_pubmed
-from services.claude_service   import summarise_paper, generate_ideas
+from services.claude_services   import summarise_paper, generate_ideas
 from cache.redis_client        import (
     get_cached_summary, set_cached_summary,
     get_cached_ideas,   set_cached_ideas
@@ -19,8 +19,6 @@ load_dotenv()
 
 app = FastAPI(title="SchoLang API", version="1.0.0")
 
-# ── CORS ──────────────────────────────────────────────────────────────────────
-# Allows React frontend on localhost:3000 to call this backend on localhost:8000
 app.add_middleware(
     CORSMiddleware,
     allow_origins     = ["http://localhost:3000"],
@@ -30,7 +28,6 @@ app.add_middleware(
 )
 
 
-# ── Request models for routes that need a body ────────────────────────────────
 class SummariseRequest(BaseModel):
     doi:      str
     abstract: str
@@ -42,18 +39,12 @@ class IdeasRequest(BaseModel):
     abstract: str
     language: str = "en"
 
-
-# ═════════════════════════════════════════════════════════════════════════════
-# ROUTES
-# ═════════════════════════════════════════════════════════════════════════════
-
-# ── Health check ──────────────────────────────────────────────────────────────
 @app.get("/")
 def health_check():
     return {"status": "running", "app": "SchoLang API", "version": "1.0.0"}
 
 
-# ── Search ────────────────────────────────────────────────────────────────────
+
 @app.post("/search")
 async def search(request: SearchRequest):
     """
@@ -62,16 +53,15 @@ async def search(request: SearchRequest):
     deduplicates by DOI, sorts by relevance, returns top N.
     """
 
-    # Call all 4 APIs at the same time
+    
     results = await asyncio.gather(
         search_semantic_scholar(request.query, request.limit),
         search_openalex(request.query, request.limit),
         search_arxiv(request.query, request.limit),
         search_pubmed(request.query, request.limit),
-        return_exceptions=True   # one failing API won't kill the others
+        return_exceptions=True  
     )
 
-    # Merge all 4 lists
     all_papers = []
     for result in results:
         if isinstance(result, Exception):
@@ -79,7 +69,6 @@ async def search(request: SearchRequest):
             continue
         all_papers.extend(result)
 
-    # Deduplicate by DOI
     seen_dois    = set()
     unique_papers = []
     for paper in all_papers:
@@ -90,13 +79,13 @@ async def search(request: SearchRequest):
             seen_dois.add(doi)
         unique_papers.append(paper)
 
-    # Sort by relevance score descending
+    
     unique_papers.sort(key=lambda x: x.relevance_score, reverse=True)
 
     return unique_papers[:request.limit]
 
 
-# ── Summarise a single paper ──────────────────────────────────────────────────
+
 @app.post("/summarise")
 async def summarise(request: SummariseRequest):
     """
@@ -152,7 +141,6 @@ async def ideas(request: IdeasRequest):
     return {"source": "claude", "ideas": generated}
 
 
-# ── Get single paper placeholder ─────────────────────────────────────────────
 @app.get("/paper/{doi:path}")
 async def get_paper(doi: str):
     """
