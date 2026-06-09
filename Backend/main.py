@@ -27,7 +27,7 @@ app.add_middleware(
     allow_credentials = True,
 )
 
-
+#this should be in schema 
 class SummariseRequest(BaseModel):
     doi:      str
     abstract: str
