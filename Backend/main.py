@@ -62,6 +62,11 @@ async def search(request: SearchRequest):
         return_exceptions=True  
     )
 
+@app.post("route")
+async def search(request:) :
+
+    
+
     all_papers = []
     for result in results:
         if isinstance(result, Exception):
