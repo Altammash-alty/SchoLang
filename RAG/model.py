@@ -15,7 +15,14 @@ llm = HuggingFaceEndpoint(
 
 
 prompt = PromptTemplate(
-    template="",
-    input_variables=""
-    partial_var=""
+    template="""{
+        "instruction": "",
+        "input":""
+    }""",
+    input_variables=[],
+    partial_var={}
 )
+
+final_prompt=prompt.invoke({})
+
+answer=llm.invoke(final_prompt)
