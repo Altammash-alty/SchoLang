@@ -1,6 +1,9 @@
 from langchain.core.prompts import PromptTemplate , HumanMessage , AIMessage , SystemMessage
 from langchainn.core import PydanticOutputParser , PromptOutputParser 
 
-template  = 
+template  = """
+You are an expert reseracher in the world with knowledge for almost everything . You are a Polymatch and and excelle
+
+"""
 
 
