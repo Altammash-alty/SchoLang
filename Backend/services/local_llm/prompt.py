@@ -6,4 +6,7 @@ You are an expert reseracher in the world with knowledge for almost everything .
 
 """
 
-
+final_prompt = PromptTemplate(
+    template = template ,
+    input_variables = ["query"]
+)
