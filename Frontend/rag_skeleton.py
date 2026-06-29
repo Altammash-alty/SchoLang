@@ -14,6 +14,7 @@
 #
 # CREATE TABLE paper_chunks (
 #   id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
 #   doi         TEXT NOT NULL,
 #   title       TEXT,
 #   chunk_text  TEXT NOT NULL,
