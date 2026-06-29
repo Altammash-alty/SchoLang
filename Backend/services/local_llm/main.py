@@ -1,6 +1,8 @@
 from langchain.huggingface import HuggingFacePipeline , HuggingFaceEndpoint 
 
+repo_id=""
+
 
 llm = HuggingFaceEndpoint(
-    repor
+    repo_id = ""
 )
