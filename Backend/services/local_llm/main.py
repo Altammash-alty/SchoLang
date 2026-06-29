@@ -14,4 +14,4 @@ llm = HuggingFaceEndpoint(
 )
 
 
-result = ll.invoke(prompt)
+result = llm.invoke(prompt)
