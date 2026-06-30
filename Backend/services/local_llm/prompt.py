@@ -26,9 +26,6 @@ Abstract:
 Return your response in exactly this format — no extra text before or after:
 
 
-
-
-
 template  = """
 You are an excellent 
 
