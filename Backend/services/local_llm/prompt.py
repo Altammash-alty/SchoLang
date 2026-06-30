@@ -41,3 +41,8 @@ LIMITATIONS:
 One sentence describing the main limitation of this research.
 """
 
+try:
+    response = llm.invoke([HumanMessage(content=prompt)])
+    raw = response.content
+
+    
