@@ -20,6 +20,13 @@ You are a research assistant. Read this academic paper abstract and extract key 
  Respond entirely in {lang_name}. Do not use any other language in your response.
 
 
+Abstract:
+{abstract}
+
+Return your response in exactly this format — no extra text before or after:
+
+
+
 
 
 template  = """
