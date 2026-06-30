@@ -37,3 +37,7 @@ KEY FINDINGS:
 METHODOLOGY:
 One sentence describing how the study was conducted.
 
+LIMITATIONS:
+One sentence describing the main limitation of this research.
+"""
+
