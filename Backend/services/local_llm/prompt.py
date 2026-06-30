@@ -17,7 +17,9 @@ async def summarise_paper(abstract: str, language: str = "en") -> dict:
     prompt = f"""
 You are a research assistant. Read this academic paper abstract and extract key information.
 
- 
+ Respond entirely in {lang_name}. Do not use any other language in your response.
+
+
 
 
 template  = """
