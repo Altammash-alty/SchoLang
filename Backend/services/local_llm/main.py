@@ -9,8 +9,7 @@ llm = HuggingFaceEndpoint(
     task = "summarization",
     temperature = 2.0,
     max_new_tokens=1024,
-    trust_remote_code=True,
-    use_auth_token=os.getenv("HF_TOKEN")
+    trust_remote_code=True
 )
 
 
