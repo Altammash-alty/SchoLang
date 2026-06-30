@@ -34,19 +34,6 @@ KEY FINDINGS:
 - Finding 2
 - Finding 3
 
-
-
-template  = """
-You are an excellent 
-
-"""
-input_variables = ["query"]
-partial_variables = ["context"]
-
-final_prompt = PromptTemplate(
-    template = template ,
-    input_variables = input_variables,
-    partial_variables = partial_variables
-)
-
+METHODOLOGY:
+One sentence describing how the study was conducted.
 
