@@ -26,6 +26,16 @@ Abstract:
 Return your response in exactly this format — no extra text before or after:
 
 
+SUMMARY:
+Write a plain-language summary in 3-4 sentences. No jargon. Anyone should understand this.
+
+KEY FINDINGS:
+- Finding 1
+- Finding 2
+- Finding 3
+
+
+
 template  = """
 You are an excellent 
 
