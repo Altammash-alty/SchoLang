@@ -1,7 +1,7 @@
 from langchain.huggingface import HuggingFacePipeline , HuggingFaceEndpoint 
 from prompt import prompt
 
-repo_id=""
+repo_id="unsloth/GLM-5.2-GGUF"
 
 
 llm = HuggingFaceEndpoint(
