@@ -15,6 +15,7 @@ LANGUAGE_NAMES = {
 async def summarise_paper(abstract: str, language: str = "en") -> dict:
     lang_name = LANGUAGE_NAMES.get(language, "English")
     prompt = f"""
+You are a research assistant. Read this academic paper abstract and extract key information.
 
  
 
