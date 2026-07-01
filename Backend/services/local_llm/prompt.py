@@ -164,3 +164,11 @@ COMPETITION ANGLE:
                 if current_idea:
                     ideas.append(current_idea)
                 current_idea = {}
+
+            elif line.startswith("TITLE:"):
+                current_idea["title"] = line.replace("TITLE:", "").strip()
+
+            elif line.startswith("DESCRIPTION:"):
+                current_idea["description"] = line.replace("DESCRIPTION:", "").strip()
+
+          
