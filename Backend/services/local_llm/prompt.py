@@ -111,3 +111,10 @@ You are a creative engineering mentor. Read this research paper and generate exa
 project ideas that a student team could realistically build in 4-8 weeks for a hackathon
 or tech fest competition.
 
+Respond entirely in {lang_name}. Do not use any other language in your response.
+
+Paper title: {title}
+Paper abstract: {abstract}
+
+Return in exactly this format — nothing else:
+
