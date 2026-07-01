@@ -1,4 +1,5 @@
 from langchian_core.prompt import PromptTemplate
+from langchain_core import PydanticOutputParser
 
 
 
@@ -10,4 +11,9 @@ USER QUERY: {query}
 
 
 """
+
+final_prompt=PromptTemplate(
+    template=prompt,
+    input_variables=["query"]
+)
 
