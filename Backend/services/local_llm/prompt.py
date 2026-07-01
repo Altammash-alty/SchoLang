@@ -118,3 +118,11 @@ Paper abstract: {abstract}
 
 Return in exactly this format — nothing else:
 
+PROJECT 1:
+TITLE: project name here
+DESCRIPTION: 2 sentences explaining what it does and who it helps
+TECH STACK: tool1, tool2, tool3, tool4
+DIFFICULTY: Beginner or Intermediate or Advanced
+BUILD TIME: X weeks
+COMPETITION ANGLE: one sentence on what makes it stand out in a competition
+
