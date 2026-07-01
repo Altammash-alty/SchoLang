@@ -108,4 +108,6 @@ async def generate_ideas(title: str, abstract: str, language: str = "en") -> lis
     prompt = f"""
 
 You are a creative engineering mentor. Read this research paper and generate exactly 3
-project ideas tha
+project ideas that a student team could realistically build in 4-8 weeks for a hackathon
+or tech fest competition.
+
