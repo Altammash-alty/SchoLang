@@ -20,27 +20,27 @@ export default function Home() {
   }
 
   return (
-    <main className="max-w-3xl mx-auto px-6 pt-8 pb-6 text-center">
+    <main className="max-w-3xl mx-auto px-6 pt-6 pb-4 text-center">
 
       {/* Hero */}
-      <div className="mb-6">
+      <div className="mb-4">
         <span className="text-xs font-mono text-accent bg-blue-50 border border-blue-100
                          px-3 py-1 rounded-full">
           Research Intelligence Platform
         </span>
-        <h1 className="mt-4 text-3xl sm:text-4xl font-semibold text-ink leading-tight tracking-tight">
+        <h1 className="mt-3 text-3xl sm:text-4xl font-semibold text-ink leading-tight tracking-tight">
           Find research.<br />
           <span className="text-accent">Understand it.</span><br />
           Build with it.
         </h1>
-        <p className="mt-2.5 text-sm sm:text-base text-muted max-w-xl mx-auto leading-relaxed">
+        <p className="mt-2 text-sm sm:text-base text-muted max-w-xl mx-auto leading-relaxed">
           Type any topic. Get real papers, plain-language summaries, and
           buildable project ideas — in your language.
         </p>
       </div>
 
       {/* Search */}
-      <form onSubmit={handleSearch} className="flex gap-3 mb-5">
+      <form onSubmit={handleSearch} className="flex gap-3 mb-4">
         <input
           type="text"
           className="input flex-1 text-sm sm:text-base"
@@ -54,7 +54,7 @@ export default function Home() {
       </form>
 
       {/* Examples */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 mb-6">
         {EXAMPLES.map(ex => (
           <button
             key={ex}
@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 border-t border-gray-100 pt-5">
+      <div className="grid grid-cols-3 gap-4 border-t border-gray-100 pt-4">
         {[
           ['300M+', 'Papers indexed'],
           ['8', 'Languages'],
@@ -82,6 +82,7 @@ export default function Home() {
 
     </main>
   )
+
 
 
 }

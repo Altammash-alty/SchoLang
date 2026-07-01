@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
   return (
     <footer className="bg-surface border-t border-gray-100 mt-auto">
-      <div className="max-w-5xl mx-auto px-6 py-8">
+      <div className="max-w-5xl mx-auto px-6 py-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           
           {/* Brand & Description */}
@@ -69,7 +69,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 pt-4 border-t border-gray-200/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-6 pt-3 border-t border-gray-200/50 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted">
             &copy; {new Date().getFullYear()} SchoLang. All rights reserved.
           </p>
@@ -79,6 +79,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
     </footer>
 
   )
