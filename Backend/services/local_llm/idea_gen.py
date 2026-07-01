@@ -1,6 +1,6 @@
+from langchain_core.messages import HumanMessage   # FIXED: was missing entirely
 from idea_prompt import idea_prompt
 from model import idea_model
-
 
 LANGUAGE_NAMES = {
     "en": "English",
@@ -13,15 +13,16 @@ LANGUAGE_NAMES = {
     "fr": "French",
 }
 
+
 async def generate_ideas(title: str, abstract: str, language: str = "en") -> list:
-
     lang_name = LANGUAGE_NAMES.get(language, "English")
-    
-    prompt=idea_prompt.invoke({'lang_name':lang_name,'title':title,'abstract':abstract})
-    try:
-        response = idea_model.invoke([HumanMessage(content=prompt)])
 
-        raw          = response.content
+    prompt_value = idea_prompt.invoke({"lang_name": lang_name, "title": title, "abstract": abstract})
+
+    try:
+        response = idea_model.invoke([HumanMessage(content=prompt_value.text)])
+        raw = response.content
+
         ideas        = []
         current_idea = {}
 
@@ -31,7 +32,7 @@ async def generate_ideas(title: str, abstract: str, language: str = "en") -> lis
                 continue
 
             if line.startswith("PROJECT") and line.endswith(":"):
-                if current_idea:
+                if current_idea:    
                     ideas.append(current_idea)
                 current_idea = {}
 
@@ -60,5 +61,5 @@ async def generate_ideas(title: str, abstract: str, language: str = "en") -> lis
         return ideas
 
     except Exception as e:
-        print(f"Claude ideas error: {e}")
+        print(f"Idea generation error: {e}")
         return []
