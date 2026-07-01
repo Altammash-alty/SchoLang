@@ -101,3 +101,4 @@ final_prompt = PromptTemplate(
 )
 
 
+async def generate_ideas(title: str, abstract: str, language: str = "en") -> list:

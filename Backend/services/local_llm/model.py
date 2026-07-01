@@ -1,2 +1,2 @@
 from langgraph import SequenceGraph
-unsloth/GLM-5.2-GGUF
+llm=unsloth/GLM-5.2-GGUF
