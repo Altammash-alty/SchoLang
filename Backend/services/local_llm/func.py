@@ -73,8 +73,7 @@ async def generate_ideas(title: str, abstract: str, language: str = "en") -> lis
 
     lang_name = LANGUAGE_NAMES.get(language, "English")
     
-    
-
+    prompt=idea_prompt.invoke({'lang_name':lang_name,'title':title,'abstract':abstract})
     try:
         message = client.messages.create(
             model      = "model",
