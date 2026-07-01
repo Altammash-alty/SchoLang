@@ -155,4 +155,12 @@ COMPETITION ANGLE:
         ideas        = []
         current_idea = {}
 
-        
+        for line in raw.split("\n"):
+            line = line.strip()
+            if not line:
+                continue
+
+            if line.startswith("PROJECT") and line.endswith(":"):
+                if current_idea:
+                    ideas.append(current_idea)
+                current_idea = {}
