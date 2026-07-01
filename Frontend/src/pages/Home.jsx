@@ -20,20 +20,20 @@ export default function Home() {
   }
 
   return (
-    <main className="max-w-3xl mx-auto px-6 pt-24 pb-20 text-center">
+    <main className="max-w-3xl mx-auto px-6 pt-12 pb-10 text-center">
 
       {/* Hero */}
-      <div className="mb-10">
+      <div className="mb-8">
         <span className="text-xs font-mono text-accent bg-blue-50 border border-blue-100
                          px-3 py-1 rounded-full">
           Research Intelligence Platform
         </span>
-        <h1 className="mt-6 text-5xl font-semibold text-ink leading-tight tracking-tight">
+        <h1 className="mt-4 text-4xl sm:text-5xl font-semibold text-ink leading-tight tracking-tight">
           Find research.<br />
           <span className="text-accent">Understand it.</span><br />
           Build with it.
         </h1>
-        <p className="mt-5 text-lg text-muted max-w-xl mx-auto leading-relaxed">
+        <p className="mt-3 text-base sm:text-lg text-muted max-w-xl mx-auto leading-relaxed">
           Type any topic. Get real papers, plain-language summaries, and
           buildable project ideas — in your language.
         </p>
@@ -54,12 +54,12 @@ export default function Home() {
       </form>
 
       {/* Examples */}
-      <div className="flex flex-wrap justify-center gap-2 mb-16">
+      <div className="flex flex-wrap justify-center gap-2 mb-10">
         {EXAMPLES.map(ex => (
           <button
             key={ex}
             onClick={() => navigate(`/search?q=${encodeURIComponent(ex)}&lang=${language}`)}
-            className="tag hover:border-accent hover:text-accent transition-colors cursor-pointer"
+            className="tag hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer"
           >
             {ex}
           </button>
@@ -67,19 +67,20 @@ export default function Home() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 border-t border-gray-100 pt-10">
+      <div className="grid grid-cols-3 gap-4 border-t border-gray-100 pt-6">
         {[
           ['300M+', 'Papers indexed'],
           ['8', 'Languages'],
           ['4', 'Databases'],
         ].map(([num, label]) => (
           <div key={label}>
-            <p className="text-3xl font-semibold text-accent">{num}</p>
-            <p className="text-sm text-muted mt-1">{label}</p>
+            <p className="text-2xl sm:text-3xl font-semibold text-accent">{num}</p>
+            <p className="text-xs sm:text-sm text-muted mt-1">{label}</p>
           </div>
         ))}
       </div>
 
     </main>
   )
+
 }

@@ -178,4 +178,5 @@ COMPETITION ANGLE:
             elif line.startswith("DIFFICULTY:"):
                 current_idea["difficulty"] = line.replace("DIFFICULTY:", "").strip()
 
-            
+            elif line.startswith("BUILD TIME:"):
+                current_idea["build_time"] = line.replace("BUILD TIME:", "").strip()
