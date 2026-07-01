@@ -190,4 +190,5 @@ COMPETITION ANGLE:
         return ideas
 
     except Exception as e:
-        
+        print(f"Claude ideas error: {e}")
+        return []
