@@ -31,3 +31,4 @@ summary_prompt = PromptTemplate(
     input_variables=["lang_name", "abstract"],
     output_parser=PydanticOutputParser(pydantic_object=PaperSummary)
 )
+
