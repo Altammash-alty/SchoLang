@@ -184,4 +184,5 @@ COMPETITION ANGLE:
             elif line.startswith("COMPETITION ANGLE:"):
                 current_idea["competition_angle"] = line.replace("COMPETITION ANGLE:", "").strip()
 
-       
+        if current_idea:
+           
