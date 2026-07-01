@@ -187,4 +187,6 @@ COMPETITION ANGLE:
         if current_idea:
             ideas.append(current_idea)
 
-        
+        return ideas
+
+    
