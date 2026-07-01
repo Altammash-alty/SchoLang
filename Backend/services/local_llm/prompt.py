@@ -150,3 +150,9 @@ COMPETITION ANGLE:
             max_tokens = 1500,
             messages   = [{"role": "user", "content": prompt}]
         )
+
+        raw          = message.content[0].text
+        ideas        = []
+        current_idea = {}
+
+        
