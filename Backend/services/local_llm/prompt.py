@@ -180,3 +180,8 @@ COMPETITION ANGLE:
 
             elif line.startswith("BUILD TIME:"):
                 current_idea["build_time"] = line.replace("BUILD TIME:", "").strip()
+
+            elif line.startswith("COMPETITION ANGLE:"):
+                current_idea["competition_angle"] = line.replace("COMPETITION ANGLE:", "").strip()
+
+       
