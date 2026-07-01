@@ -126,3 +126,11 @@ DIFFICULTY: Beginner or Intermediate or Advanced
 BUILD TIME: X weeks
 COMPETITION ANGLE: one sentence on what makes it stand out in a competition
 
+
+PROJECT 2:
+TITLE:
+DESCRIPTION:
+TECH STACK:
+DIFFICULTY:
+BUILD TIME:
+COMPETITION ANGLE:
