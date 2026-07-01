@@ -171,4 +171,11 @@ COMPETITION ANGLE:
             elif line.startswith("DESCRIPTION:"):
                 current_idea["description"] = line.replace("DESCRIPTION:", "").strip()
 
-          
+            elif line.startswith("TECH STACK:"):
+                raw_stack = line.replace("TECH STACK:", "").strip()
+                current_idea["tech_stack"] = [t.strip() for t in raw_stack.split(",")]
+
+            elif line.startswith("DIFFICULTY:"):
+                current_idea["difficulty"] = line.replace("DIFFICULTY:", "").strip()
+
+            
