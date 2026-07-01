@@ -106,3 +106,6 @@ async def generate_ideas(title: str, abstract: str, language: str = "en") -> lis
     lang_name = LANGUAGE_NAMES.get(language, "English")
     
     prompt = f"""
+
+You are a creative engineering mentor. Read this research paper and generate exactly 3
+
