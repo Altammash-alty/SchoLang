@@ -104,3 +104,5 @@ final_prompt = PromptTemplate(
 async def generate_ideas(title: str, abstract: str, language: str = "en") -> list:
 
     lang_name = LANGUAGE_NAMES.get(language, "English")
+    
+    prompt = f"""
