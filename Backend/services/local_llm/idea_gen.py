@@ -2,6 +2,16 @@ from idea_prompt import idea_prompt
 from model import idea_model
 
 
+LANGUAGE_NAMES = {
+    "en": "English",
+    "zh": "Chinese",
+    "hi": "Hindi",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "pt": "Portuguese",
+    "nl": "Dutch",
+    "fr": "French",
+}
 
 async def generate_ideas(title: str, abstract: str, language: str = "en") -> list:
 
