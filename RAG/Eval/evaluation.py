@@ -1,4 +1,3 @@
-  from Eval.evaluation import run_ragas_evaluation, save_eval_results
   scores = run_ragas_evaluation(
       questions=["What is transformer attention?"],
       answers=["Attention allows models to..."],
