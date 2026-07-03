@@ -1,5 +1,3 @@
-eval_results(scores, "eval_results.json")
-"""
 from __future__ import annotations
 import json
 from typing import Dict, List, Optional
