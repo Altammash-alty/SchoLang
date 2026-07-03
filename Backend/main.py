@@ -1,15 +1,3 @@
-"""
-Backend/main.py
-───────────────
-SchoLang FastAPI server.
-Routes:
-  GET  /               → health check
-  POST /search         → multi-source paper search (Semantic Scholar + OpenAlex + arXiv + PubMed)
-  POST /summarise      → AI plain-language summary of a paper (Claude, cached)
-  POST /ideas          → 3 buildable project ideas from a paper (Claude, cached)
-  POST /rag            → RAG-based Q&A grounded in retrieved paper context
-  GET  /paper/{doi}    → single paper detail (Phase 3 placeholder)
-"""
 import asyncio
 import sys
 import os
@@ -30,8 +18,6 @@ from cache.redis_client        import (
     get_cached_ideas,   set_cached_ideas
     get_cached_ideas,   set_cached_ideas,
 )
-# ── RAG pipeline (from /RAG folder) ──────────────────────────────────────────
-# Add the RAG folder to sys.path so we can import chain.py
 RAG_DIR = os.path.join(os.path.dirname(__file__), "..", "RAG")
 sys.path.insert(0, os.path.abspath(RAG_DIR))
 try:
@@ -51,8 +37,6 @@ app.add_middleware(
     allow_headers     = ["*"],
     allow_credentials = True,
 )
-#this should be in schema 
-# ── Request schemas ───────────────────────────────────────────────────────────
 class SummariseRequest(BaseModel):
     doi:      str
     abstract: str
@@ -84,7 +68,7 @@ async def search(request: SearchRequest):
     Main search route.
     Calls all 4 APIs simultaneously, merges results,
     deduplicates by DOI, sorts by relevance, returns top N.
-    """
+    
     Multi-source paper search.
     Calls all 4 APIs simultaneously, merges, deduplicates by DOI,
     sorts by relevance, and returns top N results.
