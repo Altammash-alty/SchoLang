@@ -15,20 +15,10 @@ def build_eval_dataset(
     contexts:      List[List[str]],
     ground_truths: Optional[List[str]] = None,
 ) -> Dataset:
-    """
-    Build a HuggingFace Dataset compatible with RAGAS evaluate().
-    Args:
-        questions:     List of user queries
-        answers:       Corresponding RAG-generated answers
-        contexts:      Retrieved passages per query (list of lists of strings)
-        ground_truths: Optional reference answers (needed for context_recall)
-    Returns:
-        A HuggingFace Dataset with the expected RAGAS column schema
-    """
     data: Dict[str, list] = {
         "question": questions,
         "answer":   answers,
-        "contexts": contexts,  # list of list[str] — one sublist per question
+        "contexts": contexts,
     }
     if ground_truths:
         data["ground_truth"] = ground_truths
