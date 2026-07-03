@@ -1,5 +1,4 @@
-"""
-RAG/Eval/evaluation.py
+
 ───────────────────────
 RAGAS-based evaluation of the RAG pipeline.
 RAGAS Metrics:
