@@ -61,7 +61,7 @@ def health_check():
     }
 @app.post("/search")
 async def search(request: SearchRequest):
-    "
+    """
     Main search route.
     Calls all 4 APIs simultaneously, merges results,
     deduplicates by DOI, sorts by relevance, returns top N.
@@ -72,7 +72,7 @@ async def search(request: SearchRequest):
     
     Also triggers background RAG indexing of the results so follow-up
     /rag queries have immediate context available.
-    "
+    """
     results = await asyncio.gather(
         search_semantic_scholar(request.query, request.limit),
         search_openalex(request.query, request.limit),
