@@ -9,7 +9,6 @@ from ragas.metrics import (
     context_precision,
     context_recall,
 )
-# ── Build HuggingFace Dataset from RAG outputs ────────────────────────────────
 def build_eval_dataset(
     questions:     List[str],
     answers:       List[str],
