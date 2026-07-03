@@ -1,6 +1,4 @@
 
-  context_precision  — Of the retrieved chunks, how many were actually useful?
-                       (no ground truth needed)
   context_recall     — Was all necessary information retrieved?
                        (REQUIRES ground truth reference answers)
 Usage:
