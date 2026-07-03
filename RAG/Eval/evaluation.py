@@ -23,7 +23,6 @@ def build_eval_dataset(
     if ground_truths:
         data["ground_truth"] = ground_truths
     return Dataset.from_dict(data)
-# ── Run RAGAS Evaluation ──────────────────────────────────────────────────────
 def run_ragas_evaluation(
     questions:     List[str],
     answers:       List[str],
