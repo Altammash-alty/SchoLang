@@ -1,7 +1,3 @@
-
-  context_recall     — Was all necessary information retrieved?
-                       (REQUIRES ground truth reference answers)
-Usage:
   from Eval.evaluation import run_ragas_evaluation, save_eval_results
   scores = run_ragas_evaluation(
       questions=["What is transformer attention?"],
