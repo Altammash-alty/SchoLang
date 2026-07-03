@@ -29,8 +29,6 @@ def run_ragas_evaluation(
     contexts:      List[List[str]],
     ground_truths: Optional[List[str]] = None,
 ) -> Dict[str, Optional[float]]:
-   
-
     metrics = [faithfulness, answer_relevancy, context_precision]
     if ground_truths:
         metrics.append(context_recall)
@@ -44,7 +42,6 @@ def run_ragas_evaluation(
     if ground_truths:
         scores["context_recall"] = result.get("context_recall")
     return scores
-# ── Helper: evaluate a single RAG response ────────────────────────────────────
 def evaluate_single(
     question:    str,
     answer:      str,
