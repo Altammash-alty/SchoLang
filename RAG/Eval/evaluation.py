@@ -1,5 +1,4 @@
 
-                       (measures hallucination, no ground truth needed)
   answer_relevancy   — Is the answer actually relevant to the question?
                        (no ground truth needed)
   context_precision  — Of the retrieved chunks, how many were actually useful?
