@@ -42,32 +42,27 @@ def run_ragas_evaluation(
     if ground_truths:
         scores["context_recall"] = result.get("context_recall")
     return scores
+
+
 def evaluate_single(
     question:    str,
     answer:      str,
     contexts:    List[str],
     ground_truth: Optional[str] = None,
 ) -> Dict[str, Optional[float]]:
-    """
-    Convenience wrapper to evaluate a single question-answer pair.
-    Wraps inputs into lists and calls run_ragas_evaluation().
-    """
     return run_ragas_evaluation(
         questions=[question],
         answers=[answer],
         contexts=[contexts],
         ground_truths=[ground_truth] if ground_truth else None,
     )
-# ── Save results to JSON ──────────────────────────────────────────────────────
 def save_eval_results(
     scores:      Dict[str, Optional[float]],
     output_path: str = "eval_results.json",
 ) -> None:
-    """Persist evaluation scores to a JSON file for tracking over time."""
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(scores, f, indent=2, default=str)
     print(f"[evaluation] Results saved → {output_path}")
-# ── CLI entry point ───────────────────────────────────────────────────────────
 if __name__ == "__main__":
     # Quick smoke test with dummy data
     sample_scores = run_ragas_evaluation(
