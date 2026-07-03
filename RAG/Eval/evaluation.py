@@ -1,5 +1,4 @@
 
-RAGAS Metrics:
   faithfulness       — Is the answer grounded in the retrieved context?
                        (measures hallucination, no ground truth needed)
   answer_relevancy   — Is the answer actually relevant to the question?
