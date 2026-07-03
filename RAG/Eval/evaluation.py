@@ -1,9 +1,4 @@
-  scores = run_ragas_evaluation(
-      questions=["What is transformer attention?"],
-      answers=["Attention allows models to..."],
-      contexts=[["Paper 1 passage...", "Paper 2 passage..."]],
-  )
-  save_eval_results(scores, "eval_results.json")
+eval_results(scores, "eval_results.json")
 """
 from __future__ import annotations
 import json
