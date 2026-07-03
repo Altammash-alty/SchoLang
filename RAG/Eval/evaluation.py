@@ -29,24 +29,8 @@ def run_ragas_evaluation(
     contexts:      List[List[str]],
     ground_truths: Optional[List[str]] = None,
 ) -> Dict[str, Optional[float]]:
-    """
-    Run the RAGAS evaluation suite on RAG pipeline outputs.
-    Args:
-        questions:     User queries
-        answers:       RAG-generated answers (from chain.answer_query)
-        contexts:      Retrieved passages used to generate each answer
-                       Each element is a list of strings (one per retrieved doc)
-        ground_truths: Reference answers for context_recall metric (optional)
-    Returns:
-        Dict mapping metric name → score (0.0–1.0), or None if not computed.
-    Example:
-        {
-          "faithfulness":      0.91,
-          "answer_relevancy":  0.88,
-          "context_precision": 0.76,
-          "context_recall":    0.83,   # only if ground_truths provided
-        }
-    """
+   
+
     metrics = [faithfulness, answer_relevancy, context_precision]
     if ground_truths:
         metrics.append(context_recall)
