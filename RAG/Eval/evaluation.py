@@ -1,6 +1,4 @@
 
-───────────────────────
-RAGAS-based evaluation of the RAG pipeline.
 RAGAS Metrics:
   faithfulness       — Is the answer grounded in the retrieved context?
                        (measures hallucination, no ground truth needed)
