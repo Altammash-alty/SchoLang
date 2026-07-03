@@ -28,7 +28,6 @@ except ImportError as e:
     print(f"[main] RAG not available (install RAG deps): {e}")
     RAG_AVAILABLE = False
 load_dotenv()
-# ─────────────────────────────────────────────────────────────────────────────
 app = FastAPI(title="SchoLang API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
@@ -50,9 +49,7 @@ class RAGRequest(BaseModel):
     query:         str
     papers:        list[dict] | None = None   # optional: index these papers first
     use_reranker:  bool              = True   # cross-encoder reranking (slower, more precise)
-# ─────────────────────────────────────────────────────────────────────────────
-# ROUTES
-# ─────────────────────────────────────────────────────────────────────────────
+
 @app.get("/")
 def health_check():
     return {"status": "running", "app": "SchoLang API", "version": "1.0.0"}
