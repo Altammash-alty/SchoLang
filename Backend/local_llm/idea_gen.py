@@ -1,4 +1,4 @@
-from langchain_core.messages import HumanMessage   # FIXED: was missing entirely
+from langchain_core.messages import HumanMessage 
 from idea_prompt import idea_prompt
 from model import idea_model
 
