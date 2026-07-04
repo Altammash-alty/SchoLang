@@ -34,6 +34,13 @@ async def SearchRequest(request:Annotated[SearchRequest,
         return_exceptions=True,
     )
     
-    print(request)
+all_papers=[]
+
+for result in results:
+    if isinstance(result, Exception):
+        print(f"API failure: {result}")
+        continue
+    all_papers.extend(result)
+    
 
         

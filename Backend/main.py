@@ -79,7 +79,7 @@ async def search(request: SearchRequest):
         search_arxiv(request.query, request.limit),
         search_pubmed(request.query, request.limit),
         return_exceptions=True  
-        return_exceptions=True,
+    
     )
     all_papers = []
     for result in results:
