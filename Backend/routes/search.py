@@ -27,7 +27,11 @@ async def SearchRequest(request:Annotated[SearchRequest,
     Query(...,alias="request")]):
      
     results = await asyncio.gather(
-        
+        search_semantic_scholar(request.query, request.limit),
+        search_openalex(request.query, request.limit),
+        search_arxiv(request.query, request.limit),
+        search_pubmed(request.query, request.limit),
+        return_exceptions=True,
     )
     
     print(request)
