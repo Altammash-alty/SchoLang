@@ -14,24 +14,22 @@ class UserLogin(BaseModel):
     username:str
     password:str
 
+import httpx
+import asyncio
+from fastapi import APIRouter , Query
+from typing import Annotated
+    
 
-    from fastapi import APIRouter
-    from typing import Annotated
+router=APIRouter()
 
-    router=APIRouter()
-
-    @router.post(/search)
-    async def SearchRequest(request:Annotated[SearchRequest,
-     Query(...,alias="request")]):
-        """
-        Search for papers using the SearchRequest model.
-
-        Args:
-            request: SearchRequest model containing the query, language, and limit.
-
-        Returns:
-            list[Paper]: List of papers matching the query.
-        """
-        print(request)
+@router.post("/search")
+async def SearchRequest(request:Annotated[SearchRequest,
+    Query(...,alias="request")]):
+     
+    results = await asyncio.gather(
+        
+    )
+    
+    print(request)
 
         
