@@ -49,10 +49,7 @@ class RAGRequest(BaseModel):
     query:         str
     papers:        list[dict] | None = None   # optional: index these papers first
     use_reranker:  bool              = True   # cross-encoder reranking (slower, more precise)
-
-@app.get("/")
-def health_check():
-    
+   
 
 
 @app.post("/summarise")
@@ -78,28 +75,7 @@ async def summarise(request: SummariseRequest):
         await set_cached_summary(request.doi, request.language, summary)
     return {"source": "claude", "summary": summary}
 # ── Generate project ideas from a paper ──────────────────────────────────────
-@app.post("/ideas")
-async def ideas(request: IdeasRequest):
-    """
-    Takes a paper's DOI, title, abstract, and language.
-    Returns 3 AI-generated buildable project ideas.
-    Checks Redis cache first — only calls Claude if not cached.
-    Generate 3 buildable project ideas from a paper.
-    Uses Redis cache — only calls Claude if result not already cached.
-    """
-    # Check cache first
-    if request.doi:
-        cached = await get_cached_ideas(request.doi, request.language)
-        if cached:
-            return {"source": "cache", "ideas": cached}
-    # Not in cache — call Claude
-    if not request.abstract:
-        raise HTTPException(status_code=400, detail="Abstract is required for idea generation")
-    generated = await generate_ideas(request.title, request.abstract, request.language)
-    # Save to cache
-    if request.doi and generated:
-        await set_cached_ideas(request.doi, request.language, generated)
-    return {"source": "claude", "ideas": generated}
+
 @app.post("/rag")
 async def rag_query(request: RAGRequest):
     """
