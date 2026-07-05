@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException
 
 router=APIRouter()
 
-@app.post("/summarise")
+@router.post("/summarise")
 async def summarise(request: SummariseRequest):
     """
     Takes a paper's DOI, abstract, and language.
@@ -11,7 +11,7 @@ async def summarise(request: SummariseRequest):
     Checks Redis cache first — only calls Claude if not cached.
     AI plain-language summary of a paper abstract.
     Uses Redis cache — only calls Claude if result not already cached.
-    """
+    """ 
     # Check cache first
     if request.doi:
         cached = await get_cached_summary(request.doi, request.language)
