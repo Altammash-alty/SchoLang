@@ -1,7 +1,21 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from ..models.paper import IdeasRequest
+from ..services.claude_services import generate_ideas
+from ..cache.redis_client import get_cached_ideas, set_cached_ideas
+from pydantic import BaseModel
 
 
-@app.post("/ideas")
+class IdeasRequest(BaseModel):
+    doi:      str
+    title:    str
+    abstract: str
+    language: str = "en"
+
+
+
+router = APIRouter()
+
+@router.post("/ideas")
 async def ideas(request: IdeasRequest):
     """
     Takes a paper's DOI, title, abstract, and language.
