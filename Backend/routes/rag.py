@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from ..models.paper import RAGRequest
+from ..models.model import RAGRequest
 from ..services.rag_services import answer_query, index_and_answer
 
 

@@ -1,25 +1,14 @@
 from pydantic import BaseModel
-
-class SearchRequest(BaseModel):
-    query: str
-    language: str = "en"
-    limit: int = 10
-
-class UserSignUp(BaseModel):
-    username:str
-    email:str
-    password:str
-
-class UserLogin(BaseModel):
-    username:str
-    password:str
-
 import httpx
 import asyncio
 from fastapi import APIRouter , Query
 from typing import Annotated
 from ..RAG.chain import answer_query, index_papers
 from ..RAG.embeddings import index_papers
+from services.semantic import search_semantic_scholar
+from services.openalex         import search_openalex
+from services.arxiv            import search_arxiv
+from services.pubmed           import search_pubmed
 
 
 router=APIRouter()

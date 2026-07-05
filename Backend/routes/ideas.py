@@ -1,16 +1,9 @@
 from fastapi import APIRouter, HTTPException
-from ..models.paper import IdeasRequest
-from ..services.claude_services import generate_ideas
+from ..models.model import IdeasRequest
+#from ..services.claude_services import generate_ideas
+from ..local_llm.idea_gen import generate_ideas
 from ..cache.redis_client import get_cached_ideas, set_cached_ideas
 from pydantic import BaseModel
-
-
-class IdeasRequest(BaseModel):
-    doi:      str
-    title:    str
-    abstract: str
-    language: str = "en"
-
 
 
 router = APIRouter()

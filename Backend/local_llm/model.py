@@ -27,6 +27,4 @@ idea_model=HuggingFaceEndpoint(
     trust_remote_code=True
 )
 
-workflow=SequenceGraph(
-    
-)
+workflow=SequenceGraph()

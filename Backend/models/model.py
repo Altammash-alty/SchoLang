@@ -25,9 +25,25 @@ class IdeasRequest(BaseModel):
     title:    str
     abstract: str
     language: str = "en"
-    
+
+
 class RAGRequest(BaseModel):
     query:         str
     papers:        list[dict] | None = None   # optional: index these papers first
     use_reranker:  bool              = True   # cross-encoder reranking (slower, more precise)
+
+
+class SearchRequest(BaseModel):
+    query: str
+    language: str = "en"
+    limit: int = 10
+
+class UserSignUp(BaseModel):
+    username:str
+    email:str
+    password:str
+
+class UserLogin(BaseModel):
+    username:str
+    password:str
    
