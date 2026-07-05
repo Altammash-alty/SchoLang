@@ -6,7 +6,6 @@ from langchain_huggingface import HuggingFaceEndpoint
 
 
 sum_repo_id='Qwen/Qwen3-VL-8B-Instruct'
-
 sum_model=HuggingFaceEndpoint(
     repo_id = sum_repo_id ,
     task = "summarization",

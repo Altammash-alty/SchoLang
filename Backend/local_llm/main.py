@@ -1,4 +1,4 @@
-from langchain.huggingface import HuggingFacePipeline , HuggingFaceEndpoint 
+"""from langchain.huggingface import HuggingFacePipeline , HuggingFaceEndpoint 
 from prompt import prompt
 
 repo_id="unsloth/GLM-5.2-GGUF"
@@ -13,4 +13,4 @@ llm = HuggingFaceEndpoint(
 )
 
 
-result = llm.invoke(prompt)
+result = llm.invoke(prompt)"""
