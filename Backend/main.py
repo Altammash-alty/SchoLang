@@ -2,9 +2,13 @@ import sys
 import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 from dotenv import load_dotenv
-from models.paper import SearchRequest, Paper
+import routes.health as health_router
+import routes.search as search_router
+import routes.ideas as ideas_router
+import routes.rag as rag_router
+import routes.retriever as retriever_router
+import routes.summarize as summary_router
 
 
 load_dotenv()
@@ -29,14 +33,6 @@ app.add_middleware(
     allow_headers     = ["*"],
     allow_credentials = True,
 )
-
-
-import routes.health as health_router
-import routes.search as search_router
-import routes.ideas as ideas_router
-import routes.rag as rag_router
-import routes.retriever as retriever_router
-import routes.summarize as summary_router
 
 
 app.include_router(health_router)
