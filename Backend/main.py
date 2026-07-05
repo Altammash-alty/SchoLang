@@ -53,15 +53,3 @@ class RAGRequest(BaseModel):
 
 
 
-@app.get("/paper/{doi:path}")
-async def get_paper(doi: str):
-    """
-    Placeholder for single paper fetch.
-    doi:path allows dots and slashes in DOI string.
-    Will be expanded in later phases.
-    Single paper detail endpoint.
-    doi:path allows dots and slashes in DOI strings.
-    Expanded in Phase 3.
-    """
-    return {"doi": doi, "message": "Single paper endpoint — Phase 3"}
-    return {"doi": doi, "message": "Single paper endpoint — Phase 3"} 
