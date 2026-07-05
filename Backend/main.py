@@ -55,4 +55,5 @@ class RAGRequest(BaseModel):
 import routes.health as health_router
 import routes.search as search_router
 import routes.ideas as ideas_router
-
+import routes.rag as rag_router
+import 
