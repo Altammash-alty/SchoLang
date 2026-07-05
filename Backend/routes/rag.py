@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from ..models.paper import RAGRequest
-from ..services.claude_services import summarise_paper
-from ..cache.redis_client import get_cached_summary, set_cached_summary
+from ..services.rag_services import answer_query, index_and_answer
 
 
 router=APIRouter()
