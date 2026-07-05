@@ -57,3 +57,7 @@ import routes.search as search_router
 import routes.ideas as ideas_router
 import routes.rag as rag_router
 import routes.retriever as retriever_router
+import routes.summarize as summary_router
+
+
+
