@@ -53,3 +53,4 @@ class RAGRequest(BaseModel):
 
 
 
+import routes.search as search_router
