@@ -52,13 +52,7 @@ class RAGRequest(BaseModel):
 
 @app.get("/")
 def health_check():
-    return {"status": "running", "app": "SchoLang API", "version": "1.0.0"}
-    return {
-        "status":        "running",
-        "app":           "SchoLang API",
-        "version":       "1.0.0",
-        "rag_available": RAG_AVAILABLE,
-    }
+    
 
 
 @app.post("/summarise")
