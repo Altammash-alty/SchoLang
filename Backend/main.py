@@ -60,4 +60,5 @@ import routes.retriever as retriever_router
 import routes.summarize as summary_router
 
 
-
+app.include_router(health_router)
+)
