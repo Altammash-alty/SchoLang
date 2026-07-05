@@ -62,4 +62,5 @@ import routes.summarize as summary_router
 
 app.include_router(health_router)
 app.include_router(search_router)
+app.include_router(ideas_router)
 
