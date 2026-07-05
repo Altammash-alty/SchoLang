@@ -18,7 +18,9 @@ import httpx
 import asyncio
 from fastapi import APIRouter , Query
 from typing import Annotated
-    
+from ..RAG.chain import answer_query, index_papers
+from ..RAG.embeddings import index_papers
+
 
 router=APIRouter()
 
