@@ -3,8 +3,8 @@ import httpx
 import asyncio
 from fastapi import APIRouter , Query
 from typing import Annotated
-from ..RAG.chain import answer_query, index_papers
-from ..RAG.embeddings import index_papers
+from RAG.chain import answer_query, index_papers
+from RAG.embeddings import index_papers
 from services.semantic import search_semantic_scholar
 from services.openalex         import search_openalex
 from services.arxiv            import search_arxiv
