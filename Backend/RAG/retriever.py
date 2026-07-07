@@ -1,19 +1,29 @@
-from langchian_core.prompt import PromptTemplate
-from langchain_core import PydanticOutputParser
+from langchain_core.prompts import PromptTemplate
 
+from .embeddings import vector_store
 
+query_expansion_prompt = PromptTemplate(
+    template="""
+You are an expert academic researcher.
 
-prompt="""You are an expert academic search engine.
+Rewrite the user's query into three alternative search queries.
 
-Given a user query, your job is to retrieve the best 20 papers based on the user query by understanding the query and papers on the basis of keywords given in the user query and also the semantic meaning . Calculate the semantic scores also for the papers that are retrieved based on the query and papers.
+Keep the meaning identical.
 
-USER QUERY: {query}
+Query:
 
+{query}
 
-"""
-
-final_prompt=PromptTemplate(
-    template=prompt,
-    input_variables=["query"]
+Return only three rewritten queries.
+""",
+    input_variables=["query"],
 )
 
+retriever = vector_store.as_retriever(
+    search_type="mmr",
+    search_kwargs={
+        "k": 10,
+        "fetch_k": 30,
+        "lambda_mult": 0.5,
+    },
+)
