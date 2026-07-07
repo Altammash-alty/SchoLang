@@ -1,21 +1,22 @@
-from langgraph import StateGraph
 from langchain_huggingface import HuggingFaceEndpoint
-from retriever import final_prompt 
-from dotenv import load_dotenv
 
-load_dotenv()
-
-
-repo_id='BAAI/bge-m3'
-
-
-retriever_model=HuggingFaceEndpoint(
-    repo_id=repo_id,
-    task='text',
-    temperature=0.16062005
+from .config import (
+    HF_TOKEN,
+    GENERATION_MODEL,
 )
 
+rag_model = HuggingFaceEndpoint(
+    repo_id=GENERATION_MODEL,
+    huggingfacehub_api_token=HF_TOKEN,
+    task="text-generation",
+    temperature=0.2,
+    max_new_tokens=512,
+)
 
-result = retriever_model.invoke(final_prompt)
-papers=result['papers']
-score=result['scores']
+query_expansion_model = HuggingFaceEndpoint(
+    repo_id=GENERATION_MODEL,
+    huggingfacehub_api_token=HF_TOKEN,
+    task="text-generation",
+    temperature=0.1,
+    max_new_tokens=128,
+)
