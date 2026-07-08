@@ -17,7 +17,6 @@ async def ideas(request: IdeasRequest):
     if not request.abstract:
         raise HTTPException(status_code=400, detail="Abstract is required for idea generation")
     generated = await generate_ideas(request.title, request.abstract, request.language)
-    # Save to cache
     if request.doi and generated:
         await set_cached_ideas(request.doi, request.language, generated)
     return {"source": "claude", "ideas": generated}
