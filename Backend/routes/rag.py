@@ -7,12 +7,6 @@ router=APIRouter()
 
 @router.post("/rag")
 async def rag_query(request: RAGRequest):
-    """
-    RAG-based Q&A grounded in retrieved academic paper context.
-    If 'papers' are provided in the request body, they are indexed first
-    (useful for first-time queries on a fresh topic).
-    Returns a cited answer generated from retrieved paper chunks.
-    """
     if not RAG_AVAILABLE:
         raise HTTPException(
             status_code=503,
