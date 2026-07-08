@@ -27,20 +27,6 @@ vector_store = Chroma(
 
 
 def index_papers(papers: list[dict]) -> None:
-    """
-    Index papers into the vector database.
-
-    Expected paper format:
-
-    {
-        "title": "...",
-        "abstract": "...",
-        "authors": "...",
-        "year": "...",
-        "doi": "..."
-    }
-    """
-
     docs = []
 
     for paper in papers:

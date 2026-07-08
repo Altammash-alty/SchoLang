@@ -13,8 +13,7 @@ def build_eval_dataset(
     questions:     List[str],
     answers:       List[str],
     contexts:      List[List[str]],
-    ground_truths: Optional[List[str]] = None,
-) -> Dataset:
+    ground_truths: Optional[List[str]] = None,) -> Dataset:
     data: Dict[str, list] = {
         "question": questions,
         "answer":   answers,
