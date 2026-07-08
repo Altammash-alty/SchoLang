@@ -3,12 +3,8 @@ from pydantic import BaseModel
 from typing import Optional
 from local_llm.summarisation import summarise_paper
 from cache.redis_client import get_cached_summary, set_cached_summary
+from models.model import SummariseRequest
 
-
-class SummariseRequest(BaseModel):
-    doi:      Optional[str] = None
-    abstract: str
-    language: str             = "en"
 
 
 router=APIRouter()
