@@ -2,7 +2,7 @@ from fastapi import APIRouter
 import asyncio
 
 from models.model import SearchRequest
-from RAG.embeddings import index_papers
+# from RAG.embeddings import index_papers
 from services.semantic import search_semantic_scholar
 from services.openalex import search_openalex
 from services.arxiv import search_arxiv
@@ -45,21 +45,21 @@ async def search(request: SearchRequest):
 
         unique_papers.append(paper)
 
-    unique_papers.sort(
-        key=lambda paper: getattr(paper, "relevance_score", 0),
-        reverse=True,
-    )
+    # unique_papers.sort(
+    #     key=lambda paper: getattr(paper, "relevance_score", 0),
+    #     reverse=True,
+    # )
 
-    top_papers = unique_papers[: request.limit]
+    # top_papers = unique_papers[: request.limit]
 
-    if RAG_AVAILABLE and top_papers:
-        asyncio.create_task(
-            _index_papers_background(
-                [paper.model_dump() for paper in top_papers]
-            )
-        )
+    # if RAG_AVAILABLE and top_papers:
+    #     asyncio.create_task(
+    #         _index_papers_background(
+    #             [paper.model_dump() for paper in top_papers]
+    #         )
+    #     )
 
-    return top_papers
+    # return top_papers
 
 
 async def _index_papers_background(papers: list[dict]):
