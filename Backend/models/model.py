@@ -29,8 +29,8 @@ class IdeasRequest(BaseModel):
 
 class RAGRequest(BaseModel):
     query:         str
-    papers:        list[dict] | None = None   # optional: index these papers first
-    use_reranker:  bool              = True   # cross-encoder reranking (slower, more precise)
+    papers:        list[dict] | None = None  
+    use_reranker:  bool              = True   
 
 
 class SearchRequest(BaseModel):
